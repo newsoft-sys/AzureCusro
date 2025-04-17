@@ -1,0 +1,7 @@
+A tela do professor era diferente no painel do Azure então já mas deu tudo certo.
+E ao criar o primeiro pojeto o professor usa o pymssql que está depreciado e sem manutenção
+então usei o pyodbc.
+Outro ponto é que o professor usou o Data studio, mas notei que ele será descontinuado em 2026.
+Então usei o Visual Studio Code.
+Já de inicio percebi as possibilidades de usar o Azure para prover informações a app android por exemplo,
+e de maneira bem fácil.  
