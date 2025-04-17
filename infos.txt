@@ -1,0 +1,11 @@
+CREATE TABLE Produtos (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    nome NVARCHAR(255),
+    descricao NVARCHAR(MAX),
+    preco DECIMAL(18,2),
+    imagem_url NVARCHAR(2083)
+)
+Sqllab1DioESTUS 
+logon do adminstrador do servidor : AdmUserDioproject1_Sql
+pw: @E_5690ox0926$rP35&91370501PW#401938
+Storage Acount nome: storagelabdio1estus.blob.core.windows.net
