@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart {
+            cursor: pointer;
+            position: relative;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .card button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .card button:hover {
+            background-color: #218838;
+        }
+        .cart-summary {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .cart-summary h2 {
+            margin-top: 0;
+        }
+        .cart-summary .close {
+            cursor: pointer;
+            color: red;
+            font-size: 20px;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>E-commerce</h1>
+        <div class="cart" onclick="toggleCart()">
+            🛒 <span class="cart-count" id="cart-count">0</span>
+        </div>
+    </header>
+    <main>
+        <div class="products">
+            <!-- Exemplo de card de produto -->
+            <div class="card">
+                <img src="images/product1.jpg" alt="Produto 1">
+                <h3>Produto 1</h3>
+                <p>Descrição do produto 1</p>
+                <p><strong>R$ 100,00</strong></p>
+                <button onclick="addToCart('Produto 1', 100)">Adicionar ao Carrinho</button>
+            </div>
+            <!-- ...repita para outros produtos... -->
+        </div>
+    </main>
+    <div class="cart-summary" id="cart-summary">
+        <h2>Resumo do Carrinho <span class="close" onclick="toggleCart()">×</span></h2>
+        <ul id="cart-items"></ul>
+        <p><strong>Total: R$ <span id="cart-total">0.00</span></strong></p>
+    </div>
+    <script>
+        let cart = [];
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+        }
+        function updateCart() {
+            document.getElementById('cart-count').textContent = cart.length;
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - R$ ${item.price.toFixed(2)}`;
+                cartItems.appendChild(li);
+                total += item.price;
+            });
+            document.getElementById('cart-total').textContent = total.toFixed(2);
+        }
+        function toggleCart() {
+            const cartSummary = document.getElementById('cart-summary');
+            cartSummary.style.display = cartSummary.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
